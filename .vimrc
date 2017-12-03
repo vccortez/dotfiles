@@ -1,30 +1,3 @@
-" settings
-set nocompatible
-
-set cursorline
-set noshowmode
-
-set expandtab
-set softtabstop=2
-set shiftwidth=2
-
-set autoindent
-set backspace=indent,eol,start
-
-set hlsearch
-set number
-
-set ignorecase
-set smartcase
-
-set t_Co=256
-set background=dark
-
-syntax on
-colorscheme solarized
-
-imap <Tab> <C-X><C-F>
-
 " plugins
 call plug#begin('~/.vim/plugged')
 
@@ -34,6 +7,41 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized', { 'do': 'cp -r ./colors ../../' }
 
 call plug#end()
+
+" settings
+set autoindent
+set background=dark
+set backspace=indent,eol,start
+set complete-=i
+set cursorline
+set encoding=utf-8
+set expandtab
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set mouse=a
+set nocompatible
+set noshowmode
+set number
+set ruler
+set scrolloff=4
+set shiftwidth=2
+set smartcase
+set smarttab
+set softtabstop=2
+set tabstop=2
+set t_Co=256
+set ttimeout
+set ttimeoutlen=100
+
+filetype plugin indent on
+syntax enable
+colorscheme solarized
+
+imap <Tab> <C-X><C-F>
+nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
 " plugins config
 
