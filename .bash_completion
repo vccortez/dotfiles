@@ -1,0 +1,3 @@
+if alias dotfiles &>/dev/null; then
+  complete -o default -o nospace -F _git dotfiles
+fi

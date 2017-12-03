@@ -1,0 +1,12 @@
+# personal inputrc for libreadline
+
+# case-insensitive file completion
+set completion-ignore-case on
+
+# hyphens == underscores
+set completion-map-case on
+
+# unicode support
+set input-meta on
+set output-meta on
+set convert-meta off
