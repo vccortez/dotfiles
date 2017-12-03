@@ -1,5 +1,5 @@
 # dotfiles repository specific alias
-alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles.git/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/git/dotfiles.git --work-tree=$HOME'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
