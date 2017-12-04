@@ -41,6 +41,7 @@ syntax enable
 colorscheme solarized
 
 imap <Tab> <C-X><C-F>
+map <F10> mzgg=G`z
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
 " plugins config
