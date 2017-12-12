@@ -21,6 +21,8 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
+set list
+set listchars=tab:›\ ,trail:·,extends:»,precedes:«,eol:˼,nbsp:˽
 set mouse=a
 set nocompatible
 set noshowmode
@@ -43,6 +45,8 @@ colorscheme solarized
 imap <Tab> <C-X><C-F>
 map <F10> mzgg=G`z
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+
+highlight NonText term=NONE cterm=NONE gui=NONE
 
 " plugins config
 
