@@ -16,6 +16,7 @@ set complete-=i
 set cursorline
 set encoding=utf-8
 set expandtab
+set fileformat=unix
 set hidden
 set hlsearch
 set ignorecase
