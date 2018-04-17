@@ -8,6 +8,12 @@ case $- in
   *) return;;
 esac
 
+# if a quotes file exists, show a random quote
+if [ -f ~/.bash_terminal_quotes ] && [ -x "$(command -v shuf)" ]; then
+  bash_terminal_quote=`shuf -n 1 ~/.bash_terminal_quotes`
+  echo "$(tput setaf 2)${bash_terminal_quote}$(tput sgr0)"
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
