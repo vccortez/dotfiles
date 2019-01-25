@@ -82,11 +82,8 @@ else
   RESET="\033[m"
 fi
 
-parse_git_dirty () {
-  [[ $(git status 2> /dev/null | tail -n1 | cut -c 1-17) != "nothing to commit" ]] && echo "*"
-}
-parse_git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+is_git_repo () {
+  git rev-parse --is-inside-work-tree 2>/dev/null
 }
 
 function prompt_command() {
@@ -101,10 +98,11 @@ function prompt_command() {
   PS1+="\[$BOLD$VIOLET\]\h" # host
   PS1+="\[$RESET$WHITE\] in "
   PS1+="\[$CYAN\]\w" # working directory
-  PS1+="\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$GREEN\]\$(parse_git_branch)\[$RESET\]"
+  PS1+="\[$RESET\]\$([[ \$(is_git_repo = true) ]] && echo \" on\")\[$GREEN\]\$(__git_ps1)\[$RESET\]" # git repo
   PS1+=$LAST_STATUS
   PS1+="\n\$\[$RESET\] "
 
+  export GIT_PS1_SHOWDIRTYSTATE=yes
   export PS1
 }
 
