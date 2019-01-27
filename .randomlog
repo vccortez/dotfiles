@@ -1,0 +1,4 @@
+# random settings [possibly] without config files
+
+# dconf-editor
+# org/gnome/desktop/input-sources xkb-options 'compose:menu-altgr'
