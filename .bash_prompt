@@ -72,35 +72,60 @@ if tput setaf 1 &> /dev/null; then
   BOLD=$(tput bold)
   RESET=$(tput sgr0)
 else
+  WHITE="\033[m"
+  YELLOW="\033[1;34m"
+  ORANGE="\033[1;33m"
+  RED="\033[1;33m"
+  MAGENTA="\033[1;35m"
+  VIOLET="\033[1;35m"
+  BLUE="\033[1;31m"
   CYAN="\033[1;31m"
   GREEN="\033[1;32m"
-  ORANGE="\033[1;33m"
-  YELLOW="\033[1;34m"
-  VIOLET="\033[1;35m"
   WHITE="\033[1;37m"
   BOLD=""
   RESET="\033[m"
 fi
 
-is_git_repo () {
-  git rev-parse --is-inside-work-tree 2>/dev/null
+# gets git work tree details
+function get_gitps1 () {
+  if [[ `git rev-parse --is-inside-work-tree 2>/dev/null` = true ]]; then
+    PROMPT_GITPS1="${WHITE} on${GREEN}`__git_ps1`"
+  else
+    PROMPT_GITPS1=""
+  fi
 }
 
-function prompt_command() {
-  if [[ $? != 0 ]]; then
-    LAST_STATUS="\[$RED\]"
+# gets error status of last command
+function get_laststatus () {
+  if test $1 -eq 0; then
+    PROMPT_LASTSTATUS="${GREEN}"
   else
-    LAST_STATUS="\[$GREEN\]"
+    PROMPT_LASTSTATUS="${RED}"
   fi
+}
+
+# gets python virtualenv details
+function get_pyvenv () {
+  if test -z "$VIRTUAL_ENV"; then
+    PROMPT_PYVENV=""
+  else
+    PROMPT_PYVENV="${BLUE} (`basename \"$VIRTUAL_ENV\"`)"
+  fi
+}
+
+function prompt_command () {
+  get_laststatus $?
+  get_pyvenv
+  get_gitps1
 
   PS1="\[$BOLD$VIOLET\]\u" # user
   PS1+="\[$RESET$WHITE\] at "
   PS1+="\[$BOLD$VIOLET\]\h" # host
   PS1+="\[$RESET$WHITE\] in "
   PS1+="\[$CYAN\]\w" # working directory
-  PS1+="\[$RESET\]\$([[ \$(is_git_repo = true) ]] && echo \" on\")\[$GREEN\]\$(__git_ps1)\[$RESET\]" # git repo
-  PS1+=$LAST_STATUS
-  PS1+="\n\$\[$RESET\] "
+  PS1+="\[$RESET\]${PROMPT_PYVENV}"
+  PS1+="\[$RESET\]${PROMPT_GITPS1}"
+  PS1+="\[$RESET\]\n${PROMPT_LASTSTATUS}\$\[$RESET\] "
 
   export GIT_PS1_SHOWDIRTYSTATE=yes
   export PS1
