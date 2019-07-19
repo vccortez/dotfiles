@@ -89,7 +89,7 @@ fi
 # gets git work tree details
 function get_gitps1 () {
   if [[ `git rev-parse --is-inside-work-tree 2>/dev/null` = true ]]; then
-    PROMPT_GITPS1="${WHITE} on${GREEN}`__git_ps1`"
+    PROMPT_GITPS1="\[$WHITE\] on\[$GREEN\]`__git_ps1`"
   else
     PROMPT_GITPS1=""
   fi
@@ -98,9 +98,9 @@ function get_gitps1 () {
 # gets error status of last command
 function get_laststatus () {
   if test $1 -eq 0; then
-    PROMPT_LASTSTATUS="${GREEN}"
+    PROMPT_LASTSTATUS="\[$GREEN\]"
   else
-    PROMPT_LASTSTATUS="${RED}"
+    PROMPT_LASTSTATUS="\[$RED\]"
   fi
 }
 
@@ -109,7 +109,7 @@ function get_pyvenv () {
   if test -z "$VIRTUAL_ENV"; then
     PROMPT_PYVENV=""
   else
-    PROMPT_PYVENV="${BLUE} (`basename \"$VIRTUAL_ENV\"`)"
+    PROMPT_PYVENV="\[$BLUE\] (`basename \"$VIRTUAL_ENV\"`)"
   fi
 }
 
