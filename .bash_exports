@@ -1,0 +1,16 @@
+# ~/.bash_exports: setup for custom exports.
+
+if [ -d "$HOME/.gems" ] ; then
+  export GEM_HOME="$HOME/.gems"
+fi
+
+if [ -d "$HOME/.nvm" ] ; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+if [ -d "$HOME/Android/Sdk" ] ; then
+  export ANDROID_HOME=$HOME/Android/Sdk
+  PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools"
+fi

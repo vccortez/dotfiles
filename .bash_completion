@@ -3,3 +3,7 @@
 if alias dotfiles &>/dev/null; then
   complete -o default -o nospace -F _git dotfiles
 fi
+
+if [ -f ~/.config/exercism/exercism_completion.bash ]; then
+  . ~/.config/exercism/exercism_completion.bash
+fi
